@@ -55,7 +55,7 @@ const InputField = () => {
         {({ errors, touched, values, setFieldValue }) => (
           <Form>
             {/* 1st input feild  */}
-            <div className="md:max-w-[1100px] mx-auto h-85 shadow-md mt-8 bg-white p-4 pl-6 rounded-xl ">
+            <div className="md:max-w-[1100px] mx-auto h-98 shadow-md mt-8 bg-white p-4 pl-6 rounded-xl ">
               <div className="flex flex-col gap-5 mt-3 ">
                 <div className="flex md:items-center flex-col md:flex-row">
                   <div className="flex flex-col ">
@@ -151,7 +151,7 @@ const InputField = () => {
                     placeholder="Write your description here (Max length is 500 words)"
                     className="resize-none text-md border-2 rounded-md md:w-[70%] p-2 "
                   />
-                  <div>
+                  <div className="mb-3">
                     <ErrorMessage
                       name="description"
                       component="p"
