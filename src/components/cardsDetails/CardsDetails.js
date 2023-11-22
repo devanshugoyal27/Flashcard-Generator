@@ -53,7 +53,6 @@ const CardsDetails = () => {
   return (
     <>
       <div ref={componentRef} className="lg:max-w-[1100px] mx-auto print-style">
-        
         {/* Header section with back button and group name */}
         <div className="flex gap-6 mt-4">
           <Link to="/myflashcard">
@@ -78,9 +77,10 @@ const CardsDetails = () => {
             {formData.inputList.map((item, index) => (
               <p
                 key={index}
-                className={`text-sm my-2 font-semibold ${
+                className={`text-sm my-2 font-semibold cursor-pointer ${
                   index === currentPage ? "text-blue-600" : ""
                 }`}
+                onClick={() => setCurrentPage(index)}
               >
                 {item.term}
               </p>
@@ -95,7 +95,11 @@ const CardsDetails = () => {
                 index === currentPage ? "block" : "hidden"
               }`}
             >
-              <img src={item.file2} alt="" className="w-[250px] h-[200px] print-margin" />
+              <img
+                src={item.file2}
+                alt=""
+                className="w-[250px] h-[200px] print-margin"
+              />
               <div className="p-6">{item.definition}</div>
             </div>
           ))}
