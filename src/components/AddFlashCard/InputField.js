@@ -20,9 +20,11 @@ const initialValues = {
 
 const InputField = () => {
   const [preview, setPreview] = useState(null);
-  const [previews, setpreviews] = useState([null]); // Using array for multiple previews
+  const [previews, setPreviews] = useState([null]); // Using array for multiple previews
   const [isFirstInputFilled, setIsFirstInputFilled] = useState(true);
   const dispatch = useDispatch();
+
+ 
 
   return (
     <>
@@ -259,14 +261,25 @@ const InputField = () => {
                                       <FaEdit size={22} />
                                       <input
                                         type="file"
-                                        disabled={isFirstInputFilled}
                                         className="hidden"
                                         id={`inputList[${i}].file2`}
                                         onChange={(event) => {
-                                          setFieldValue(
-                                            `inputList[${i}].file2`,
-                                            event.currentTarget.files[0]
-                                          );
+                                          const file2 = event.target.files[0];
+                                          const reader2 = new FileReader();
+                                          reader2.readAsDataURL(file2);
+                                          reader2.onload = () => {
+                                            setFieldValue(
+                                              `inputList[${i}].file2`,
+                                              reader2.result
+                                            );
+                                            
+                                            // Update the previews array with the new image
+                                            setPreviews((prevPreviews) => {
+                                              const newPreviews = [...prevPreviews];
+                                              newPreviews[i] = reader2.result;
+                                              return newPreviews;
+                                            });
+                                          }; 
                                         }}
                                       />
                                     </label>
@@ -299,16 +312,14 @@ const InputField = () => {
                                             `inputList[${i}].file2`,
                                             reader2.result
                                           );
-
+                                          
                                           // Update the previews array with the new image
-                                          setpreviews((prevPreviews) => {
-                                            const newPreviews = [
-                                              ...prevPreviews,
-                                            ];
+                                          setPreviews((prevPreviews) => {
+                                            const newPreviews = [...prevPreviews];
                                             newPreviews[i] = reader2.result;
                                             return newPreviews;
                                           });
-                                        };
+                                        }; 
                                       }}
                                     />
                                   </div>
