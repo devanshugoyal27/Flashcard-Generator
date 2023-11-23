@@ -24,8 +24,6 @@ const InputField = () => {
   const [isFirstInputFilled, setIsFirstInputFilled] = useState(true);
   const dispatch = useDispatch();
 
- 
-
   return (
     <>
       {/* Formik is used for form handling */}
@@ -41,9 +39,6 @@ const InputField = () => {
           // Handle form submission (e.g., dispatching to Redux)
 
           dispatch(createFlashcard(formDataWithId));
-
-          console.log(formDataWithId);
-
           // Show success toast
           toast.success("Flashcard created successfully!", {
             position: toast.POSITION.TOP_CENTER,
@@ -272,14 +267,16 @@ const InputField = () => {
                                               `inputList[${i}].file2`,
                                               reader2.result
                                             );
-                                            
+
                                             // Update the previews array with the new image
                                             setPreviews((prevPreviews) => {
-                                              const newPreviews = [...prevPreviews];
+                                              const newPreviews = [
+                                                ...prevPreviews,
+                                              ];
                                               newPreviews[i] = reader2.result;
                                               return newPreviews;
                                             });
-                                          }; 
+                                          };
                                         }}
                                       />
                                     </label>
@@ -312,14 +309,16 @@ const InputField = () => {
                                             `inputList[${i}].file2`,
                                             reader2.result
                                           );
-                                          
+
                                           // Update the previews array with the new image
                                           setPreviews((prevPreviews) => {
-                                            const newPreviews = [...prevPreviews];
+                                            const newPreviews = [
+                                              ...prevPreviews,
+                                            ];
                                             newPreviews[i] = reader2.result;
                                             return newPreviews;
                                           });
-                                        }; 
+                                        };
                                       }}
                                     />
                                   </div>
