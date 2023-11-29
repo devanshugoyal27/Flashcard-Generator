@@ -207,7 +207,7 @@ const InputField = () => {
                                 className="font-bold text-gray-500 mb-2"
                                 htmlFor={`inputList[${i}].definition`}
                               >
-                                Enter Defination*
+                                Enter Definition*
                               </label>
                               <Field
                                 type="text"
